@@ -1,0 +1,4 @@
+nvim/.nvimlog
+**/settings.local.json
+claude/scripts/ccn-notify
+.DS_Store
