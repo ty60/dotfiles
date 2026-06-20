@@ -9,6 +9,7 @@
 | パス | 用途 | リンク先 |
 |------|------|----------|
 | `nvim/` | Neovim 設定 | `~/.config/nvim` |
+| `ghostty/config` | Ghostty 設定 | `~/.config/ghostty/config` |
 | `shell/bashrc` | Bash 設定 | `~/.bashrc` |
 | `shell/bash_profile` | Bash ログイン設定 | `~/.bash_profile` |
 | `shell/zshrc` | Zsh 設定 | `~/.zshrc` |

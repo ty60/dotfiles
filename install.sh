@@ -14,6 +14,7 @@ LINKS=(
   "shell/inputrc:$HOME/.inputrc"
   "tmux/tmux.conf:$HOME/.tmux.conf"
   "nvim:$HOME/.config/nvim"
+  "ghostty/config:$HOME/.config/ghostty/config"
   "claude/settings.json:$HOME/.claude/settings.json"
   "claude/scripts:$HOME/.claude/scripts"
 )

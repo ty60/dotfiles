@@ -1,0 +1,10 @@
+bell-features = no-attention,no-title,no-audio,no-system,no-border
+
+font-family = JetBrainsMono Nerd Font
+font-family = Noto Sans Mono CJK JP
+
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
+mouse-hide-while-typing = true
