@@ -1,0 +1,11 @@
+. "$HOME/.cargo/env"
+
+if [[ -d "/Users/ty/Library/Python/3.9/bin" ]]; then
+    PATH="${PATH}:/Users/ty/Library/Python/3.9/bin"
+fi
+
+. "$HOME/.local/bin/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/ty/.lmstudio/bin"
+# End of LM Studio CLI section

@@ -1,0 +1,18 @@
+if [[ -f ~/.bashrc ]]; then
+    source ~/.bashrc
+fi
+. "$HOME/.cargo/env"
+
+# Required for pylsp to work properly,
+# when setting `language en_US` in init.vim.
+export LC_CTYPE=ja_JP.UTF-8
+
+# Added by Toolbox App
+export PATH="$PATH:/Users/ty/Library/Application Support/JetBrains/Toolbox/scripts"
+
+export PATH="$PATH:$HOME/go/bin"
+. "$HOME/.local/bin/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/ty/.lmstudio/bin"
+# End of LM Studio CLI section
