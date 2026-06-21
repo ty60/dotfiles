@@ -8,6 +8,11 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 . "$HOME/.local/bin/env"
 
+# Activate mise if it is installed
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/ty/.lmstudio/bin"
 # End of LM Studio CLI section
