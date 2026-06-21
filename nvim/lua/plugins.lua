@@ -52,10 +52,10 @@ require("lazy").setup({
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "<leader>ff", function() require("telescope.builtin").find_files() end },
-      { "<leader>fg", function() require("telescope.builtin").live_grep() end },
-      { "<leader>fb", function() require("telescope.builtin").buffers() end },
-      { "<leader>fs", function() require("telescope.builtin").grep_string() end },
+      { "<space>ff", function() require("telescope.builtin").find_files() end },
+      { "<space>fg", function() require("telescope.builtin").live_grep() end },
+      { "<space>fb", function() require("telescope.builtin").buffers() end },
+      { "<space>fs", function() require("telescope.builtin").grep_string() end },
     },
   },
 
