@@ -1,3 +1,17 @@
+[ui]
+prompt_new_tab_name = false
+
 [ui.sound]
-enabled = true
+enabled = false
+
+[keys]
+split_horizontal = "prefix+ctrl+s"
+split_vertical = "prefix+ctrl+v"
+focus_pane_left = ["prefix+h", "prefix+ctrl+h"]
+focus_pane_down = ["prefix+j", "prefix+ctrl+j"]
+focus_pane_up = ["prefix+k", "prefix+ctrl+k"]
+focus_pane_right = ["prefix+l", "prefix+ctrl+l"]
+cycle_pane_next = ["prefix+tab", "prefix+ctrl+w"]
+previous_workspace = "prefix+up"
+next_workspace = "prefix+down"
 

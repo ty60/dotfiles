@@ -17,7 +17,7 @@ LINKS=(
   "ghostty/config:$HOME/.config/ghostty/config"
   "claude/settings.json:$HOME/.claude/settings.json"
   "claude/scripts:$HOME/.claude/scripts"
-  "herdr/config.toml:$HOME/herdr/config.toml"
+  "herdr/config.toml:$HOME/.config/herdr/config.toml"
 )
 
 link() {
