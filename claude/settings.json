@@ -1,25 +1,3 @@
 {
-  "model": "opus",
-  "hooks": {
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/scripts/notify.sh Notification"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/scripts/notify.sh Stop"
-          }
-        ]
-      }
-    ]
-  }
+  "model": "sonnet"
 }

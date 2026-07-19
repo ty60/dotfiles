@@ -59,6 +59,12 @@ require("lazy").setup({
     },
   },
 
+  -- Terraform / HCL (filetype, syntax, indent)
+  {
+    "hashivim/vim-terraform",
+    ft = { "terraform", "tf", "terraform-vars" },
+  },
+
   -- Status / bufferline
   {
     "itchyny/lightline.vim",
