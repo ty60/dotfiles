@@ -15,6 +15,7 @@ LINKS=(
   "tmux/tmux.conf:$HOME/.tmux.conf"
   "nvim:$HOME/.config/nvim"
   "ghostty/config:$HOME/.config/ghostty/config"
+  "hammerspoon:$HOME/.hammerspoon"
   "claude/settings.json:$HOME/.claude/settings.json"
   "claude/scripts:$HOME/.claude/scripts"
   "herdr/config.toml:$HOME/.config/herdr/config.toml"
