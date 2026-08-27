@@ -1,9 +1,9 @@
 -- アプリ切り替えホットキー
--- prefix は Control+Shift (Caps Lock はシステム設定で Control にリマップ済み)
--- 注意: Cocoa のテキスト入力欄では ctrl+shift+{a,b,e,f,n,p} が選択範囲の拡張に
--- 割り当て済みのため、それらのキーは避けること。
+-- prefix は Control+Command (Caps Lock はシステム設定で Control にリマップ済み)
+-- 注意: macOS が ctrl+cmd+{space, f, d, q} を予約済みのため、それらのキーは避けること。
+-- 左右の Command は区別されない (hs.hotkey は修飾キーの左右を見分けられない)。
 
-local prefix = { "ctrl", "shift" }
+local prefix = { "ctrl", "cmd" }
 
 -- キー -> バンドル ID
 local apps = {
