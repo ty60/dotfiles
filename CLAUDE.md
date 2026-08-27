@@ -11,6 +11,7 @@
 | `nvim/` | Neovim 設定 | `~/.config/nvim` |
 | `ghostty/config` | Ghostty 設定 | `~/.config/ghostty/config` |
 | `hammerspoon/init.lua` | Hammerspoon 設定 (アプリ切り替えホットキー) | `~/.hammerspoon/` |
+| `brew/Brewfile` | Homebrew でインストール済みのパッケージ一覧 | `~/.Brewfile` |
 | `shell/bashrc` | Bash 設定 | `~/.bashrc` |
 | `shell/bash_profile` | Bash ログイン設定 | `~/.bash_profile` |
 | `shell/zshrc` | Zsh 設定 | `~/.zshrc` |
@@ -36,6 +37,30 @@ LINKS=(
 `ln -sfn` でリンクを張るため、既存のリンクや再実行でも問題ない。
 
 **設定ファイルを追加・移動した場合は `LINKS` 配列も必ず更新すること。**
+
+## Homebrew パッケージ管理
+
+`brew/Brewfile` が `requirements.txt` 相当。`~/.Brewfile` にリンクされているため
+`--global` を付ければどのディレクトリからでも実行できる。
+
+```bash
+brew bundle install --global   # Brewfile の内容を再現する (新しいマシンのセットアップ)
+brew bundle check --global     # 差分を確認する
+brew bundle dump --global --force  # 現在の環境を Brewfile に書き出す (更新時)
+brew bundle cleanup --global   # Brewfile に無いものを削除する (--force で実行)
+```
+
+**新しくパッケージを入れたら `brew bundle dump --global --force` で Brewfile を更新すること。**
+
+`brew bundle check` は未インストールのものだけでなく**更新があるものも報告する**ため、
+差分が出ていても壊れているとは限らない。
+
+組織固有の tap など公開したくないものは `brew/Brewfile.local` に書く (gitignore 済み)。
+こちらは明示的にファイル指定して実行する:
+
+```bash
+brew bundle install --file=~/dotfiles/brew/Brewfile.local
+```
 
 ## 補足事項
 

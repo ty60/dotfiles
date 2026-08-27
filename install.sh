@@ -16,6 +16,7 @@ LINKS=(
   "nvim:$HOME/.config/nvim"
   "ghostty/config:$HOME/.config/ghostty/config"
   "hammerspoon:$HOME/.hammerspoon"
+  "brew/Brewfile:$HOME/.Brewfile"
   "claude/settings.json:$HOME/.claude/settings.json"
   "claude/scripts:$HOME/.claude/scripts"
   "herdr/config.toml:$HOME/.config/herdr/config.toml"

@@ -2,3 +2,6 @@ nvim/.nvimlog
 **/settings.local.json
 claude/scripts/ccn-notify
 .DS_Store
+
+# ローカル専用 Brewfile (組織固有の tap など)
+brew/Brewfile.local
