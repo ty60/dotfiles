@@ -34,25 +34,20 @@ end
 -- ランチャー (Spotlight)
 --------------------------------------------------------------------------------
 
--- prefix を一箇所に揃えるため ctrl+cmd+l でも Spotlight を開けるようにする。
--- Spotlight 自体は macOS 予約のショートカットなので直接は呼べない。
--- 本来の cmd+space を合成イベントとして投げて起動する (cmd+space も従来どおり使える)。
+-- Spotlight is a macOS-reserved shortcut, so it cannot be invoked directly.
+-- Synthesize its real cmd+space instead, on key down (cmd+space still works too).
 --
--- 合成イベントには「その時点で物理的に押されている修飾キー」が混ざってしまう。
--- ctrl+cmd+l を押した直後は ctrl と cmd が押しっぱなしなので、そのまま投げると
--- ctrl+cmd+space になり Spotlight が反応しない。修飾キーが離されるのを待ってから投げる。
+-- The physically held ctrl+cmd could leak into the synthetic event and turn it
+-- into ctrl+cmd+space; posting the event with an explicit cmd-only flag set
+-- (via setFlags) overrides the current modifier state.
 local function openSpotlight()
-  local waited = 0
-  local waiter
-  waiter = hs.timer.doEvery(0.02, function()
-    local mods = hs.eventtap.checkKeyboardModifiers()
-    waited = waited + 0.02
-    -- 1 秒待っても離されない場合は諦めて投げる (押しっぱなしの異常系で固まらないように)。
-    if (not mods.ctrl and not mods.cmd) or waited > 1 then
-      waiter:stop()
-      hs.eventtap.keyStroke({ "cmd" }, "space", 0)
-    end
-  end)
+  local down = hs.eventtap.event.newKeyEvent("space", true)
+  down:setFlags({ cmd = true })
+  down:post()
+
+  local up = hs.eventtap.event.newKeyEvent("space", false)
+  up:setFlags({ cmd = true })
+  up:post()
 end
 
 hs.hotkey.bind(prefix, "l", openSpotlight)
