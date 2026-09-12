@@ -23,5 +23,6 @@
     "claude-opus-5": {
       "effortLevel": "medium"
     }
-  }
+  },
+  "agentPushNotifEnabled": true
 }
