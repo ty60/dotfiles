@@ -22,6 +22,7 @@
 | `tmux/pane-jump.sh` | tmux ペイン移動ヘルパー | — |
 | `claude/settings.json` | Claude Code 設定 (通知フック等) | `~/.claude/settings.json` |
 | `claude/scripts/` | 通知スクリプト群 (notify.sh, ccn-notify 等) | `~/.claude/scripts/` |
+| `logi/logi-fix.sh` | Logi Options+ がスプラッシュで固まったときの復旧スクリプト | — |
 
 ## install.sh の仕組み
 
