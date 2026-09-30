@@ -12,9 +12,14 @@ local prefix = { "ctrl", "cmd" }
 -- アプリ切り替え
 --------------------------------------------------------------------------------
 
+-- Chrome on the Pro, Safari on the Neo: use Chrome only where it is installed.
+local browser = hs.application.pathForBundleID("com.google.Chrome")
+  and "com.google.Chrome"
+  or "com.apple.Safari"
+
 -- キー -> バンドル ID
 local apps = {
-  b = "com.google.Chrome",       -- browser
+  b = browser,                   -- browser
   t = "com.mitchellh.ghostty",   -- terminal
   o = "md.obsidian",
 }

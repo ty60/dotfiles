@@ -11,7 +11,8 @@
 | `nvim/` | Neovim 設定 | `~/.config/nvim` |
 | `ghostty/config` | Ghostty 設定 | `~/.config/ghostty/config` |
 | `hammerspoon/init.lua` | Hammerspoon 設定 (アプリ切り替えホットキー) | `~/.hammerspoon/` |
-| `brew/Brewfile` | Homebrew でインストール済みのパッケージ一覧 | `~/.Brewfile` |
+| `brew/Brewfile` | Homebrew でインストール済みのパッケージ一覧 (Pro) | `~/.Brewfile` |
+| `brew/Brewfile.neo` | Neo 用の最小パッケージ一覧 | `~/.Brewfile` (`--neo` 時) |
 | `shell/bashrc` | Bash 設定 | `~/.bashrc` |
 | `shell/bash_profile` | Bash ログイン設定 | `~/.bash_profile` |
 | `shell/zshrc` | Zsh 設定 | `~/.zshrc` |
@@ -26,10 +27,10 @@
 
 ## install.sh の仕組み
 
-`LINKS` 配列で「リポジトリ内相対パス:リンク先絶対パス」を一元管理している。
+`*_LINKS` 配列で「リポジトリ内相対パス:リンク先絶対パス」を一元管理している。
 
 ```bash
-LINKS=(
+COMMON_LINKS=(
   "shell/bashrc:$HOME/.bashrc"
   # ... 他のエントリ
 )
@@ -37,7 +38,19 @@ LINKS=(
 
 `ln -sfn` でリンクを張るため、既存のリンクや再実行でも問題ない。
 
-**設定ファイルを追加・移動した場合は `LINKS` 配列も必ず更新すること。**
+### マシン別プロファイル
+
+| コマンド | 対象 | 張るリンク |
+|----------|------|------------|
+| `./install.sh` | MacBook Pro (開発機) | `COMMON_LINKS` + `FULL_LINKS` |
+| `./install.sh --neo` | MacBook Neo (Pro に SSH する端末) | `COMMON_LINKS` + `NEO_LINKS` |
+
+- `COMMON_LINKS`: シェル・Ghostty・Hammerspoon など、手元の操作に関わるもの
+- `FULL_LINKS`: tmux・nvim・Claude Code・herdr など、開発機の上で動かすもの
+- シェル設定は両方で共用するため、Pro にしかないファイルを読み込むときは `[ -f ... ] &&` で存在を確認すること
+- Hammerspoon のブラウザは、Chrome がインストールされていれば Chrome、なければ Safari を開く
+
+**設定ファイルを追加・移動した場合は、該当する `*_LINKS` 配列も必ず更新すること。**
 
 ## Homebrew パッケージ管理
 

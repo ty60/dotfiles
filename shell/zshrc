@@ -4,9 +4,9 @@ source "$HOME/dotfiles/shell/prompt.sh"
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # Activate mise if it is installed
 if command -v mise >/dev/null 2>&1; then

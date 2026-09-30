@@ -4,9 +4,9 @@ source "$HOME/dotfiles/shell/prompt.sh"
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/ty/.lmstudio/bin"

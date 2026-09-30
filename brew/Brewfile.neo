@@ -1,0 +1,12 @@
+# Packages for the MacBook Neo (thin client that SSHes into the Pro).
+# Development tools live on the Pro, so only local desktop apps and fonts go here.
+# Linked to ~/.Brewfile by `./install.sh --neo`.
+cask "font-hack-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-noto-sans-mono-cjk-jp"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Desktop automation application
+cask "hammerspoon"
+# Utility to extend trackpad functionality
+cask "middleclick"
