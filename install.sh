@@ -60,5 +60,12 @@ for entry in "${LINKS[@]}"; do
   link "${entry%%:*}" "${entry#*:}"
 done
 
+# Record which profile this machine uses, so configs such as Hammerspoon can
+# branch on it. Written on every run so switching profiles takes effect.
+PROFILE_FILE="$HOME/.config/dotfiles/profile"
+mkdir -p "$(dirname "$PROFILE_FILE")"
+echo "$PROFILE" > "$PROFILE_FILE"
+echo "wrote $PROFILE_FILE ($PROFILE)"
+
 echo "Done ($PROFILE). Restart your shell or run: source ~/.bash_profile"
 echo "Install packages with: brew bundle install --global"

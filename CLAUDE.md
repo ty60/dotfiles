@@ -48,7 +48,7 @@ COMMON_LINKS=(
 - `COMMON_LINKS`: シェル・Ghostty・Hammerspoon など、手元の操作に関わるもの
 - `FULL_LINKS`: tmux・nvim・Claude Code・herdr など、開発機の上で動かすもの
 - シェル設定は両方で共用するため、Pro にしかないファイルを読み込むときは `[ -f ... ] &&` で存在を確認すること
-- Hammerspoon のブラウザは、Chrome がインストールされていれば Chrome、なければ Safari を開く
+- `install.sh` は実行時のプロファイル (`full` / `neo`) を `~/.config/dotfiles/profile` に書き出す。Hammerspoon はこれを読み、`neo` なら Safari、それ以外 (ファイルが無い場合も含む) は Chrome を開く
 
 **設定ファイルを追加・移動した場合は、該当する `*_LINKS` 配列も必ず更新すること。**
 

@@ -12,10 +12,21 @@ local prefix = { "ctrl", "cmd" }
 -- アプリ切り替え
 --------------------------------------------------------------------------------
 
--- Chrome on the Pro, Safari on the Neo: use Chrome only where it is installed.
-local browser = hs.application.pathForBundleID("com.google.Chrome")
-  and "com.google.Chrome"
-  or "com.apple.Safari"
+-- Profile recorded by install.sh ("full" or "neo"); "full" when not installed yet.
+local function readProfile()
+  local f = io.open(os.getenv("HOME") .. "/.config/dotfiles/profile", "r")
+  if not f then
+    return "full"
+  end
+  local profile = f:read("*l")
+  f:close()
+  return profile
+end
+
+-- Chrome on the Pro, Safari on the Neo.
+local browser = readProfile() == "neo"
+  and "com.apple.Safari"
+  or "com.google.Chrome"
 
 -- キー -> バンドル ID
 local apps = {
