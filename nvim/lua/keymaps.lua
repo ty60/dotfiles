@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
-map("n", "<C-j>", "<cmd>bnext<cr>", { silent = true })
-map("n", "<C-k>", "<cmd>bprev<cr>", { silent = true })
+map("n", "<C-j>", "<cmd>bprev<cr>", { silent = true })
+map("n", "<C-k>", "<cmd>bnext<cr>", { silent = true })
 
 -- Diagnostics
 map("n", "<space>e", vim.diagnostic.open_float, { silent = true })
