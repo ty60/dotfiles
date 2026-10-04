@@ -10,7 +10,7 @@
 |------|------|----------|
 | `nvim/` | Neovim 設定 | `~/.config/nvim` |
 | `ghostty/config` | Ghostty 設定 | `~/.config/ghostty/config` |
-| `hammerspoon/init.lua` | Hammerspoon 設定 (アプリ切り替えホットキー) | `~/.hammerspoon/` |
+| `hammerspoon/init.lua` | Hammerspoon 設定 (アプリ切り替え・ウィンドウスナップ・右 ⌘ 単体で IME 切り替え) | `~/.hammerspoon/` |
 | `brew/Brewfile` | Homebrew でインストール済みのパッケージ一覧 (Pro) | `~/.Brewfile` |
 | `brew/Brewfile.neo` | Neo 用の最小パッケージ一覧 | `~/.Brewfile` (`--neo` 時) |
 | `shell/bashrc` | Bash 設定 | `~/.bashrc` |

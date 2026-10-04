@@ -122,10 +122,92 @@ snapTap = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, function(event)
 end)
 snapTap:start()
 
+--------------------------------------------------------------------------------
+-- IME 切り替え (右 Command 単体)
+--------------------------------------------------------------------------------
+
+-- Tapping right cmd alone toggles between English and Japanese input.
+-- The tap only observes events and never swallows them, so right cmd + key
+-- shortcuts and left cmd behave exactly as before.
+local RIGHT_CMD = 54
+-- Device-dependent bits in CGEventFlags that tell left and right cmd apart.
+local LEFT_CMD_MASK = 0x08
+local RIGHT_CMD_MASK = 0x10
+-- A press held longer than this is treated as an aborted shortcut, not a tap.
+local IME_TAP_MAX_SECONDS = 0.3
+-- JIS 英数 / かな keys; posting them is more reliable than selecting the
+-- input source directly, which can leave the Japanese IME half-switched.
+local EISU = 102
+local KANA = 104
+
+local imePressedAt = nil -- set while a right cmd tap is still a candidate
+
+local function onlyCmd(flags)
+  return flags.cmd and not flags.ctrl and not flags.alt and not flags.shift
+end
+
+local function isJapanese()
+  local id = hs.keycodes.currentSourceID()
+  return id:find("inputmethod.Kotoeri", 1, true) ~= nil
+    and id:find("Roman", 1, true) == nil
+end
+
+local function toggleIme()
+  local key = isJapanese() and EISU or KANA
+  hs.eventtap.event.newKeyEvent({}, key, true):post()
+  hs.eventtap.event.newKeyEvent({}, key, false):post()
+end
+
+local types = hs.eventtap.event.types
+imeTap = hs.eventtap.new({
+  types.flagsChanged,
+  types.keyDown,
+  types.leftMouseDown,
+  types.rightMouseDown,
+  types.otherMouseDown,
+  types.scrollWheel,
+}, function(event)
+  if event:getType() ~= types.flagsChanged then
+    -- Any key, click or scroll while held makes this a shortcut, not a tap.
+    imePressedAt = nil
+    return false
+  end
+
+  local raw = event:rawFlags()
+  local rightDown = raw & RIGHT_CMD_MASK ~= 0
+  local leftDown = raw & LEFT_CMD_MASK ~= 0
+
+  if event:getKeyCode() == RIGHT_CMD and rightDown then
+    -- Right cmd pressed: a candidate only when no other modifier is held.
+    if onlyCmd(event:getFlags()) and not leftDown then
+      imePressedAt = hs.timer.secondsSinceEpoch()
+    else
+      imePressedAt = nil
+    end
+  elseif event:getKeyCode() == RIGHT_CMD and imePressedAt then
+    -- Right cmd released with nothing else in between.
+    if hs.timer.secondsSinceEpoch() - imePressedAt <= IME_TAP_MAX_SECONDS then
+      toggleIme()
+    end
+    imePressedAt = nil
+  else
+    -- Another modifier changed while right cmd was held.
+    imePressedAt = nil
+  end
+  return false
+end)
+imeTap:start()
+
+--------------------------------------------------------------------------------
+-- event tap の監視
+--------------------------------------------------------------------------------
+
 -- event tap は macOS 側にタイムアウト等で無効化されることがあるので復帰させる。
-snapTapWatchdog = hs.timer.doEvery(5, function()
-  if not snapTap:isEnabled() then
-    snapTap:start()
+tapWatchdog = hs.timer.doEvery(5, function()
+  for _, tap in ipairs({ snapTap, imeTap }) do
+    if not tap:isEnabled() then
+      tap:start()
+    end
   end
 end)
 
