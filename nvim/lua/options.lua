@@ -24,7 +24,7 @@ opt.updatetime = 500
 
 vim.cmd.filetype("plugin indent on")
 vim.cmd.syntax("enable")
-vim.cmd.language("en_US")
+vim.cmd.language("en_US.UTF-8")
 
 -- Python host
 local pynvim = vim.fn.expand("~/venvs/pynvim3/bin/python")
