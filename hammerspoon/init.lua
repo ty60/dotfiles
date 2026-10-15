@@ -34,6 +34,7 @@ local apps = {
   t = "com.mitchellh.ghostty",   -- terminal
   o = "md.obsidian",
   c = "com.anthropic.claudefordesktop", -- Claude desktop
+  g = "com.openai.codex",         -- ChatGPT desktop
 }
 
 -- 起動 or 前面化。既に前面にいる場合も何もしない (連打しても状態が変わらない)。
